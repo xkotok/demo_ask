@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AskPupkin</title>
+</head>
+<body>
+	{% for l in question %}
+<p>	<a href="{{ l.get_url}}">{{ l }}</a> </p>
+	{% endfor %}
+<br>
+<nav>
+<ul>
+{% for p in paginator.page_range %}
+ {% if p == page.number %}
+ <li class="active">
+ {% else %}
+ <li>
+ {% endif %}
+   <a href="{{ paginator.baseurl }}{{ p }}">
+   {{ p }}</a>
+ </li>
+ {% endfor %}
+</ul>
+</nav>
+</body>
+</html>

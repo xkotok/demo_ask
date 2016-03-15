@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AskPupkin</title>
+</head>
+<body>
+<h1>Задать вопрос</h1>
+{{error}}
+<form method="post" action="/ask/">
+{% csrf_token %}
+{{form.as_p}}
+<button type="submit">сохранить</button>
+</form>
+</body>
+</html>
