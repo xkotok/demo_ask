@@ -12,7 +12,7 @@ class Question(models.Model):
     like = models.ManyToManyField(User, related_name='question_like')
  
     def get_url(self):
-        url = '/question/' + str(self.id) # bad hardcodet path
+        url = '/question/' + str(self.id) # bad hardcoded path
         return url
     def __unicode__(self):
         return self.title

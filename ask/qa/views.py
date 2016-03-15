@@ -11,13 +11,13 @@ from forms import AskForm, AnswerForm
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
 def question(request, id_s, *args,  **kwargs):
-    id_int = int(id_s)
+    id_int = int(id_s) # cach them
 #    quest = get_object_or_404(Question, id_s)
     try:
         quest = Question.objects.get(id=id_int)
     except Question.DoesNotExist:
         raise Http404
-    form = AnswerForm()
+    form = AnswerForm(initial={'question': str(id_int)})
     try: answer = Answer.objects.filter(question=id_int)
     except Answer.DoesNotExist:
         return render(request, 'question.html', {'title': quest.title, 'text': quest.text, 'form': form })
@@ -36,12 +36,12 @@ def ask(request):
         raise Http404
     return render(request,  'ask.html', {'form': form })
 def answer(request):
-    if request.method == "POST":
+    if request.method == "POST":  #chenge to decorator
         form = AnswerForm(request.POST)
         if form.is_valid():
-            answer = form.save()
-            url = quest.get_url()
+            url = form.save()
             return HttpResponseRedirect(url)
+        
 def index(request):
     try:
         page = int(request.GET.get('page', 1))

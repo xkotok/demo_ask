@@ -18,6 +18,9 @@ class AnswerForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
     question = forms.IntegerField(widget=forms.HiddenInput)
     def save(self):
+        url = '/question/'+ str(self.cleaned_data['question'])+'/' # bad pracrtice hardcoded link
+        self.cleaned_data['question'] = Question.objects.get(id=self.cleaned_data['question'])
         answer = Answer(**self.cleaned_data)
         answer.save()
-        return answer #why?
+        return url
+#        return answer #why? fat controller?
