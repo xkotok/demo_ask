@@ -1,0 +1,11 @@
+{% extends "base_login.html" %}
+{% block title %}
+Форма регистрации!!
+{% endblock %}
+{% block login_form %}
+{{error_str}}
+<form method="post" action="/signup/">
+{% csrf_token %}
+{{form.as_p}}
+<button type="submit">Зарегистрироватся</button>
+{% endblock %}
